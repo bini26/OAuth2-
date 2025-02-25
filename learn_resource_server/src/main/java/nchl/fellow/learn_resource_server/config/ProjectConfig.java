@@ -30,19 +30,19 @@ public class ProjectConfig {
         this.converter = converter;
     }
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//
-//        http.oauth2ResourceServer(
-//                c->c.jwt(j->j.jwkSetUri(keySetUri)
-//                        .jwtAuthenticationConverter(converter)));
-//        http.authorizeHttpRequests(
-//                c->c.anyRequest()
-//                                  .authenticated());
-//
-//        return http.build();
-//
-//    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.oauth2ResourceServer(
+                c->c.jwt(j->j.jwkSetUri(keySetUri)
+                        .jwtAuthenticationConverter(converter)));
+        http.authorizeHttpRequests(
+                c->c.anyRequest()
+                                  .authenticated());
+
+        return http.build();
+
+    }
 //}
 
 
@@ -52,18 +52,18 @@ public class ProjectConfig {
 // Url for openid datas
 //http://localhost:8001/.well-known/openid-configuration
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)
-            throws Exception {
-        http.oauth2ResourceServer(
-                c -> c.opaqueToken(
-                        o -> o.introspectionUri(introspectionUri)
-                                .introspectionClientCredentials(
-                                        resourceServerClientID,
-                                        resourceServerSecret)
-                )
-        );
-        http.authorizeHttpRequests(c->c.anyRequest().authenticated());
-        return http.build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+//            throws Exception {
+//        http.oauth2ResourceServer(
+//                c -> c.opaqueToken(
+//                        o -> o.introspectionUri(introspectionUri)
+//                                .introspectionClientCredentials(
+//                                        resourceServerClientID,
+//                                        resourceServerSecret)
+//                )
+//        );
+//        http.authorizeHttpRequests(c->c.anyRequest().authenticated());
+//        return http.build();
+//    }
 }

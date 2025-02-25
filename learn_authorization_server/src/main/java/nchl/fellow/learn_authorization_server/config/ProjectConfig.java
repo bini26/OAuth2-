@@ -47,21 +47,23 @@ public class ProjectConfig {
         return  NoOpPasswordEncoder.getInstance();
     }
 
-//    @Bean
-//    public RegisteredClientRepository registeredClientRepository()
-//    {
-//
-//        RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-//                .clientId("client")
-//                .clientSecret("secret")
-//                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-////                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-//                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-//                //.scope("CUSTOM")
-//                .scope(OidcScopes.OPENID)
-//                .redirectUri("https://www.manning.com/authorized")
-//                .build();
-//
+    @Bean
+    public RegisteredClientRepository registeredClientRepository() {
+
+        RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+                .clientId("client")
+                .clientSecret("secret")
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+//                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                //.scope("CUSTOM")
+                .scope(OidcScopes.OPENID)
+                .redirectUri("https://www.manning.com/authorized")
+                .build();
+
+        return new InMemoryRegisteredClientRepository(registeredClient);
+    }}
+
 //
 //
 //
@@ -89,36 +91,36 @@ public class ProjectConfig {
 //
 //        return new InMemoryRegisteredClientRepository(registeredClient);
 //    }
-    @Bean
-    public RegisteredClientRepository registeredClientRepository(){
-
-        RegisteredClient registeredClient =
-        RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("client")
-                .clientSecret("secret")
-                .clientAuthenticationMethod(
-                        ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.REFERENCE)
-                        .accessTokenTimeToLive(Duration.ofHours(12))
-                        .build())
-                .scope("CUSTOM")
-                .build();
-
-
-        RegisteredClient resourceServer =
-                RegisteredClient.withId(UUID.randomUUID().toString())
-                        .clientId("resource_server")
-                        .clientSecret("resource_server_secret")
-                        .clientAuthenticationMethod(
-                                ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-                        .authorizationGrantType(
-                                AuthorizationGrantType.CLIENT_CREDENTIALS)
-                        .build();
-
-        return new InMemoryRegisteredClientRepository( registeredClient,resourceServer);
-    }
-}
+//    @Bean
+//    public RegisteredClientRepository registeredClientRepository(){
+//
+//        RegisteredClient registeredClient =
+//        RegisteredClient.withId(UUID.randomUUID().toString())
+//                .clientId("client")
+//                .clientSecret("secret")
+//                .clientAuthenticationMethod(
+//                        ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+//                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+//                .tokenSettings(TokenSettings.builder()
+//                        .accessTokenFormat(OAuth2TokenFormat.REFERENCE)
+//                        .accessTokenTimeToLive(Duration.ofHours(12))
+//                        .build())
+//                .scope("CUSTOM")
+//                .build();
+//
+//
+//        RegisteredClient resourceServer =
+//                RegisteredClient.withId(UUID.randomUUID().toString())
+//                        .clientId("resource_server")
+//                        .clientSecret("resource_server_secret")
+//                        .clientAuthenticationMethod(
+//                                ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+//                        .authorizationGrantType(
+//                                AuthorizationGrantType.CLIENT_CREDENTIALS)
+//                        .build();
+//
+//        return new InMemoryRegisteredClientRepository( registeredClient,resourceServer);
+//    }
+//}
 
 
